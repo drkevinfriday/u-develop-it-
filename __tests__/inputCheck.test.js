@@ -9,9 +9,5 @@ test('inputCheck() returns null when all properties exist', () => {
 test('inputCheck() returns an object when a property is missing', () => {
   const obj = {name: 'alice', occupation: ''};
 
-  expect(inputCheck(obj, 'name', 'occupation')).toEqual(
-    expect.objectContaining({
-      error: expect.stringContaining('No occupation specified')
-    })
-  );
+  expect(inputCheck(obj, 'name', 'occupation')).toEqual(expect.objectContaining({error: expect.stringContaining('No occupation specified')}) );
 });
