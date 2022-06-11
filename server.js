@@ -2,8 +2,8 @@
 const { response } = require('express');
 const express = require('express');
 const { request } = require('http');
-const mysql = require('mysql2');
 const inputCheck = require('./utils/inputCheck');
+const db = require('./db/connection')
 //  port setup for server
 const PORT =  process.env.PORT|| 3001;
 const app = express();
@@ -13,18 +13,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 
-//connect to database
-const db = mysql.createConnection(
-    {
-        host: 'localhost',
-        // Your MySQL username,
-        user: 'root',
-         // Your MySQL password,
-        password : 'Shulo13!',
-        database: 'election'
-    },
-    console.log('Connected to the election databse')
-);
+
 
 
 // this line displays all the current data from candidates database
@@ -225,8 +214,7 @@ app.put('/api/candidate/:id',(req,res)=>{
             changes: result.affectedRows
           });
         }
-      });
-
+    })
 })
 
 
